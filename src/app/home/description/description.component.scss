@@ -1,0 +1,28 @@
+.example-card {
+  max-width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  top: 2rem;
+  background-color: #683ab7a1;
+}
+
+
+.introduction-title{
+    font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+    color: #ffd740;
+}
+.introduction {
+  font-family: 'Vazir', 'Courier New', Courier, monospace;
+  margin-right: 1.2rem;
+  line-height: 1.8rem;
+  color: aliceblue;
+}
+
+@media all and (max-width: 767px) {
+    .example-card {
+        max-width: 80%;
+
+    }
+}
+
+

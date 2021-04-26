@@ -12,3 +12,10 @@
     font-size: small;
     src: local('Vazir-Light'),url('../assets/font/Vazir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
 }
+
+@font-face {
+    font-family: 'Vazir';
+    font-weight: 300;
+    font-size: medium;
+    src: local('Vazir'),url('../assets/font/Vazir-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
