@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Vazir-Bold';
+    font-style: bold;
+    font-weight: 400;
+    font-size: medium;
+    src: local('Vazir-Bold'),url('../assets/font/Vazir-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+    font-family: 'Vazir-Light';
+    font-weight: 200;
+    font-size: small;
+    src: local('Vazir-Light'),url('../assets/font/Vazir-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+}
