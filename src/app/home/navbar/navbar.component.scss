@@ -1,16 +1,19 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
 
-.hint{
-    font-family: 'Vazir-Light','Courier New', Courier, monospace;
-    margin-right: 0.5rem;
-    font-size: 0.75rem;
+.hint {
+  font-family: 'Vazir-Light', 'Courier New', Courier, monospace;
+  margin-right: 0.1rem;
+  font-size: 0.65rem;
+  color: #ffd740;
 }
-.log-container{
-    display: flex;
+
+.log-container {
+  display: flex;
 }
+
 
 
 .toolbar {
@@ -18,6 +21,7 @@
 
   &__row {
     transition: height 1s;
+
     @media (min-width: 200px) {
       height: 50px !important;
     }
@@ -33,11 +37,12 @@
     }
 
     @media (min-width: 1200px) {
-      height: 100px !important;
+      height: 90px !important;
       padding-right: 35px;
     }
   }
-  &__logo-size{
+
+  &__logo-size {
 
     @media (min-width: 200px) {
       width: 30px !important;
@@ -46,49 +51,50 @@
     }
 
     @media (min-width: 768px) {
-        width: 30px !important;
-        height: 30px !important;
-        margin: 0.3rem;
+      width: 30px !important;
+      height: 30px !important;
+      margin: 0.3rem;
     }
 
     @media (min-width: 992px) {
-        width: 40px !important;
-        height: 40px !important;
-        margin: 0.6rem;
+      width: 40px !important;
+      height: 40px !important;
+      margin: 0.6rem;
     }
 
     @media (min-width: 1200px) {
-        width: 50px !important;
-        height: 50px !important;
-        margin: 1rem;
+      width: 50px !important;
+      height: 50px !important;
+      margin: 1rem;
     }
-}
-&__title{
-
-  @media (min-width: 200px) {
-    font-family: 'Vazir-Bold','Courier New', Courier, monospace;
-    margin-right: 0.1rem;
-    font-size: 0.75rem;
   }
 
-  @media (min-width: 768px) {
-    font-family: 'Vazir-Bold','Courier New', Courier, monospace;
-    margin-right: 0.5rem;
-    font-size: 0.75rem;
-  }
+  &__title {
 
-  @media (min-width: 992px) {
-    font-family: 'Vazir-Bold','Courier New', Courier, monospace;
-    margin-right: 0.5rem;
-    font-size: 1.5rem;
-  }
+    @media (min-width: 200px) {
+      font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+      margin-right: 0.1rem;
+      font-size: 0.75rem;
+    }
 
-  @media (min-width: 1200px) {
-    font-family: 'Vazir-Bold','Courier New', Courier, monospace;
-    margin-right: 0.5rem;
-    font-size: 1.75rem;
+    @media (min-width: 768px) {
+      font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+      margin-right: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    @media (min-width: 992px) {
+      font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+      margin-right: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    @media (min-width: 1200px) {
+      font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+      margin-right: 0.5rem;
+      font-size: 1.75rem;
+    }
   }
-}
 }
 
 
