@@ -1,114 +1,39 @@
 <div class="search">
-  <input type="text" class="search__input m-r-0" placeholder="پایتخت ایران کدام شهر می‌باشد؟">
-  <button class="search__button">
+  <input type="text" id="question" name="question" [(ngModel)]="question.question" required class="search__input m-r-0"
+    placeholder="پایتخت ایران کدام شهر می‌باشد؟">
+  <button (click)="get_answer()" class="search__button">
     <i class="material-icons-outlined search__icon feature-box__icon-b icon-basic-world la-lg">search</i>
   </button>
 </div>
 
 
-<mat-card class="example-card">
-  <mat-card-header class="introduction-title ">
-    <mat-card-title class="m-r-0">پاسخ‌های سامانه</mat-card-title>
-    <span class="example-spacer"></span>
-    <div class="example-button-container">
-      <a  mat-fab class="download-btn" aria-label="دانلود فایل پاسخ ها">
-        <mat-icon>
-          <span class="material-icons">
-            file_download
-          </span>
-        </mat-icon>
-      </a>
-    </div>
+
+<mat-card *ngIf="answer.constructor.length > 0" class="answer-card">
+  <mat-card-header class="answer-title">
+    <mat-card-title class="m-r-0">پاسخ‌ها</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div class="example-container mat-elevation-z8">
-      <div class="example-loading-shade"
-           *ngIf="isLoadingResults || isRateLimitReached">
-        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-          GitHub's API rate limit has been reached. It will be reset in one minute.
-        </div>
-      </div>
-    
-      <div class="example-table-container">
-    
-        <table mat-table [dataSource]="filteredAndPagedIssues" class="example-table" matSort
-               matSortActive="created" matSortDisableClear matSortDirection="desc"
-               (matSortChange)="resetPaging()">
-          <!-- Number Column -->
-          <ng-container matColumnDef="number">
-            <th mat-header-cell *matHeaderCellDef>#</th>
-            <td mat-cell *matCellDef="let row">{{row.number}}</td>
-          </ng-container>
-    
-          <!-- Title Column -->
-          <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef>Title</th>
-            <td mat-cell *matCellDef="let row">{{row.title}}</td>
-          </ng-container>
-    
-          <!-- State Column -->
-          <ng-container matColumnDef="state">
-            <th mat-header-cell *matHeaderCellDef>State</th>
-            <td mat-cell *matCellDef="let row">{{row.state}}</td>
-          </ng-container>
-    
-          <!-- Created Column -->
-          <ng-container matColumnDef="created">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-              Created
-            </th>
-            <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
-          </ng-container>
-    
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    
-      <mat-paginator [length]="resultsLength" [pageSize]="30"></mat-paginator>
-    </div>
+    <mat-selection-list *ngIf="answer.answer == '#NO_ANSWER#' else second" #answers [multiple]="false">
+      <mat-list-option class="answer-p" *ngFor="let ans of answer.details | slice:0:2; let i=index" [value]="ans">
+        {{i+1}}. {{ans.answer}}
+      </mat-list-option>
+    </mat-selection-list>
+    <ng-template #second>
+      <mat-selection-list  #answers [multiple]="false">
+        <mat-list-option class="answer-p" [value]="answer">
+          1 . {{answer.answer}}
+        </mat-list-option>
+        <mat-list-option class="answer-p" *ngFor="let ans of answer.details | slice:0:1; let i=index" [value]="ans">
+          {{i+2}}. {{ans.answer}}
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-template>
   </mat-card-content>
 </mat-card>
 
-
-
-
-<mat-card class="paragraph-container">
-  <mat-card-header class="introduction-title ">
-    <mat-card-title class="m-r-0">پاراگراف‌ها</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="a-mat-card-content">
-    <mat-card class="answer-p">
-      <p>
-        سامانه پرسش و پاسخ توسط جمعی از اساتید به همراه دانشجویان دکتری و ارشد خوشه کلان‌داده دانشگاه اصفهان توسعه
-        داده شده است.
-        این سامانه با دریافت سوال از کاربر (به دو زبان انگلیسی وفارسی) با کمک الگوریتم‌های مبتنی به شبکه عصبی، پاسخ سوال
-        را به کاربر باز می‌گرداند.
-        همچنین متن پاراگرافی که سوال در آن وجود دارد نیز به کاربر نمایش داده می‌شود.
-      </p>
-
-    </mat-card>
-    <mat-card class="answer-p">
-      <p>
-        سامانه پرسش و پاسخ توسط جمعی از اساتید به همراه دانشجویان دکتری و ارشد خوشه کلان‌داده دانشگاه اصفهان توسعه
-        داده شده است.
-        این سامانه با دریافت سوال از کاربر (به دو زبان انگلیسی وفارسی) با کمک الگوریتم‌های مبتنی به شبکه عصبی، پاسخ سوال
-        را به کاربر باز می‌گرداند.
-        همچنین متن پاراگرافی که سوال در آن وجود دارد نیز به کاربر نمایش داده می‌شود.
-        سامانه پرسش و پاسخ توسط جمعی از اساتید به همراه دانشجویان دکتری و ارشد خوشه کلان‌داده دانشگاه اصفهان توسعه
-        داده شده است.
-        این سامانه با دریافت سوال از کاربر (به دو زبان انگلیسی وفارسی) با کمک الگوریتم‌های مبتنی به شبکه عصبی، پاسخ سوال
-        را به کاربر باز می‌گرداند.
-        همچنین متن پاراگرافی که سوال در آن وجود دارد نیز به کاربر نمایش داده می‌شود.
-        سامانه پرسش و پاسخ توسط جمعی از اساتید به همراه دانشجویان دکتری و ارشد خوشه کلان‌داده دانشگاه اصفهان توسعه
-        داده شده است.
-        این سامانه با دریافت سوال از کاربر (به دو زبان انگلیسی وفارسی) با کمک الگوریتم‌های مبتنی به شبکه عصبی، پاسخ سوال
-        را به کاربر باز می‌گرداند.
-        همچنین متن پاراگرافی که سوال در آن وجود دارد نیز به کاربر نمایش داده می‌شود.
-      </p>
-  
-    </mat-card>
-  </mat-card-content>
-</mat-card>
-
+<div *ngIf='show' class="overlay">
+  <div class="center">
+    <mat-progress-spinner diameter=50 mode="indeterminate" color="accent">
+    </mat-progress-spinner>
+  </div>
+</div>

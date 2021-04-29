@@ -11,6 +11,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http'
 import {MatSortModule} from '@angular/material/sort';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,14 +22,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './home/navbar/navbar.component';
 import { DescriptionComponent } from './home/description/description.component';
-import { SearchComponent } from './home/search/search.component'
+import { SearchComponent } from './home/search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
     DescriptionComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,10 @@ import { SearchComponent } from './home/search/search.component'
     MatButtonModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule,
+    FormsModule,
+    MatListModule
     
   ],
   providers: [],

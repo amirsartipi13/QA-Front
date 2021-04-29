@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { merge, Observable, of as observableOf } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable, of as observableOf } from 'rxjs';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Answer} from 'src/app/shared/answer.model';
+import {Question} from 'src/app/shared/question.model';
 /**
  * @title Table retrieving data through HTTP
  */
@@ -13,75 +13,39 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements AfterViewInit {
-  displayedColumns: string[] = ['created', 'state', 'number', 'title'];
-  exampleDatabase!: ExampleHttpDatabase | null;
-  filteredAndPagedIssues!: Observable<GithubIssue[]>;
+export class SearchComponent implements OnInit {
+  public question = new Question();
+  public answer = new Answer();
+  public show =false
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
 
-  resultsLength = 0;
-  isLoadingResults = true;
-  isRateLimitReached = false;
+  constructor(private _httpClient: HttpClient,private _snackBar: MatSnackBar) { 
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  constructor(private _httpClient: HttpClient) { }
-
-  ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
-
-    this.filteredAndPagedIssues = merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true;
-          return this.exampleDatabase!.getRepoIssues(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex);
-        }),
-        map(data => {
-          // Flip flag to show that loading has finished.
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.total_count;
-
-          return data.items;
-        }),
-        catchError(() => {
-          this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
-          this.isRateLimitReached = true;
-          return observableOf([]);
-        })
+  }
+  ngOnInit(): void {
+  }
+  get_answer():void{
+    const href = 'http://test.ui-bigdata.ir';
+    const requestUrl = `${href}/${'detailed'}`;
+    if(!this.question.question){
+      this._snackBar.open('برای گرفتن جواب، سوال الزامی است!', 'فهمیدم');
+    }else{
+      this.show =true
+      this._httpClient.post<Answer>(requestUrl, this.question).subscribe(
+        res => { 
+          this.answer=res
+          this.show =false
+          console.log('s')
+        },
+        err => { 
+          this._snackBar.open(err.error.detail[0].msg, 'فهمیدم');
+          this.show = false
+        }
       );
+    }
   }
-
-  resetPaging(): void {
-    this.paginator.pageIndex = 0;
-  }
+  
 }
 
-export interface GithubApi {
-  items: GithubIssue[];
-  total_count: number;
-}
 
-export interface GithubIssue {
-  created_at: string;
-  number: string;
-  state: string;
-  title: string;
-}
-
-/** An example database that the data source uses to retrieve data for the table. */
-export class ExampleHttpDatabase {
-  constructor(private _httpClient: HttpClient) { }
-
-  getRepoIssues(sort: string, order: string, page: number): Observable<GithubApi> {
-    const href = 'https://api.github.com/search/issues';
-    const requestUrl =
-      `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${page + 1}`;
-
-    return this._httpClient.get<GithubApi>(requestUrl);
-  }
-}
 
