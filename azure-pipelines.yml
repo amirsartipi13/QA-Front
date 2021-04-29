@@ -27,3 +27,5 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     publishLocation: 'pipeline'
+
+- task: PublishBuildArtifacts@1
