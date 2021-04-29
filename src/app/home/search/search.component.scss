@@ -55,6 +55,11 @@
         max-width: 60%;
 
       }
+
+      &::-webkit-input-placeholder {
+        font-size: 0.7rem;
+        color: #ffd740;
+      }
     }
   }
 
@@ -99,7 +104,7 @@ table {
   color: #ffd740;
   margin-bottom: 2rem;
   margin-top: 2rem;
-  
+
 }
 
 .example-spacer {
@@ -247,10 +252,12 @@ table {
 .mat-column-created {
   max-width: 124px;
 }
-.answer-title{
+
+.answer-title {
   color: #009688;
   font-family: 'Vazir-Bold';
 }
+
 .answer-card {
   max-width: 50%;
   margin-right: auto;
@@ -260,13 +267,13 @@ table {
 }
 
 @media all and (max-width: 767px) {
-    .answer-card {
-        max-width: 80%;
+  .answer-card {
+    max-width: 80%;
 
-    }
+  }
 }
 
-.search:hover{
+.search:hover {
   &__input {
     outline: none;
     width: 70%;

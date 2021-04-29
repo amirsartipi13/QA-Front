@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+
   get_answer():void{
     const href = 'http://test.ui-bigdata.ir';
     const requestUrl = `${href}/${'detailed'}`;
