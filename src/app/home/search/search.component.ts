@@ -24,7 +24,11 @@ export class SearchComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  someMethod(event:any){
+    if(event.keyCode == 13){
+      this.get_answer()
+    }
+  }
   get_answer():void{
     const href = 'http://test.ui-bigdata.ir';
     const requestUrl = `${href}/${'detailed'}`;
