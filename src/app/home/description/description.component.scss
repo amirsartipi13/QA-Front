@@ -1,16 +1,19 @@
-
-
-.introduction-title{
-    font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
-    color: #ffd740;
+.introduction-title {
+  font-family: 'Vazir-Bold', 'Courier New', Courier, monospace;
+  color: #ffd740;
 }
+
 .introduction {
   font-family: 'Vazir', 'Courier New', Courier, monospace;
-  margin-right: 1.2rem;
   line-height: 1.8rem;
   font-size: 1.1rem;
   color: aliceblue;
+  text-align: justify;
+  text-justify: inter-word;
+  margin: auto !important;
+
 }
+
 .example-card {
   max-width: 50%;
   margin-right: auto;
@@ -21,10 +24,20 @@
 }
 
 @media all and (max-width: 767px) {
-    .example-card {
-        max-width: 80%;
+  .example-card {
+    max-width: 80%;
 
-    }
+  }
+
+  .introduction-title {
+    font-size: 1.2rem !important;
+    margin: auto !important;
+
+  }
+
+  .introduction {
+    margin-right: 1rem;
+    line-height: 1.8rem;
+    font-size: 0.8rem;
+  }
 }
-
-
