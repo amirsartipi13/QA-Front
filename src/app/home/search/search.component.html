@@ -8,26 +8,16 @@
 
 
 
-<mat-card *ngIf="answer.constructor.length > 0" class="answer-card">
+<mat-card *ngIf="anss.length > 1" class="answer-card">
   <mat-card-header class="answer-title">
     <mat-card-title class="m-r-0">پاسخ‌ها</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <mat-selection-list *ngIf="answer.answer == '#NO_ANSWER#' else second" #answers [multiple]="false">
-      <mat-list-option class="answer-p" *ngFor="let ans of answer.details | slice:0:2; let i=index" [value]="ans">
-        {{i+1}}. {{ans.answer}}
+    <mat-selection-list #answers [multiple]="false">
+      <mat-list-option class="answer-p" *ngFor="let ans of anss | slice:0:2; let i=index" [value]="ans">
+        {{i+1}}. {{ans}}
       </mat-list-option>
     </mat-selection-list>
-    <ng-template #second>
-      <mat-selection-list  #answers [multiple]="false">
-        <mat-list-option class="answer-p" [value]="answer">
-          1 . {{answer.answer}}
-        </mat-list-option>
-        <mat-list-option class="answer-p" *ngFor="let ans of answer.details | slice:0:1; let i=index" [value]="ans">
-          {{i+2}}. {{ans.answer}}
-        </mat-list-option>
-      </mat-selection-list>
-    </ng-template>
   </mat-card-content>
 </mat-card>
 

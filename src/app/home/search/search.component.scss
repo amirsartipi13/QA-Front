@@ -161,9 +161,10 @@ section {
   color: black;
   width: 50%;
   height: 50%;
-  overflow: auto;
   display: flex;
   flex-direction: row;
+  overflow: inherit;
+  height: auto;
 }
 
 .center {
